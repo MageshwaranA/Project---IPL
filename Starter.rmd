@@ -1,0 +1,20 @@
+```{r import deliveries}
+
+library(readr)
+Deliveries <- read_csv("dataset/Deliveries.csv")
+
+```
+
+<br>
+
+#Finding Sanju Samson Total runs in IPL
+
+```{r}
+library (tidyverse)
+Sanju <- Deliveries %>% 
+  filter(batsman == "SV Samson")
+Indi_runs <- sum(Sanju$batsman_run)
+Indi_match <- Sanju %>% 
+  group_by(Sanju$match_no)
+```
+

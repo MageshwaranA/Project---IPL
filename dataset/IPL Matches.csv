@@ -1,0 +1,61 @@
+match_no,date,team1,team2,venue,toss,decision,winner,target,mom
+1,09-04-2021,Mumbai,Bangalore,MA Chidambaram Stadium,Bangalore,field,Bangalore,wickets,Harshal Patel
+2,10-04-2021,Chennai,Delhi,Wankhede Stadium,Delhi ,field,Delhi ,wickets,Shikhar Dhawan
+3,11-04-2021,Hyderabad,Kolkata,MA Chidambaram Stadium,Hyderabad,field,Kolkata  ,runs,Nitish Rana
+4,12-04-2021,Rajasthan,Punjab,Wankhede Stadium,Rajasthan ,field,Punjab ,runs,Sanju Samson
+5,13-04-2021,Kolkata,Mumbai,MA Chidambaram Stadium,Kolkata  ,field,Mumbai ,runs,Rahul Chahar
+6,14-04-2021,Hyderabad,Bangalore,MA Chidambaram Stadium,Hyderabad,field,Bangalore,runs,Glenn Maxwell
+7,15-04-2021,Rajasthan,Delhi,Wankhede Stadium,Rajasthan ,field,Rajasthan ,wickets,Jaydev Unadkat
+8,16-04-2021,Punjab,Chennai,Wankhede Stadium,Chennai  ,field,Chennai  ,wickets,Deepak Chahar
+9,17-04-2021,Mumbai,Hyderabad,MA Chidambaram Stadium,Mumbai ,bat,Mumbai ,runs,Kieron Pollard
+10,18-04-2021,Delhi,Punjab,Wankhede Stadium,Delhi ,field,Delhi ,wickets,Shikhar Dhawan
+11,18-04-2021,Bangalore,Kolkata,MA Chidambaram Stadium,Bangalore,bat,Bangalore,runs,AB de Villiers
+12,19-04-2021,Chennai,Rajasthan,Wankhede Stadium,Rajasthan ,field,Chennai  ,runs,Moeen Ali
+13,20-04-2021,Delhi,Mumbai,MA Chidambaram Stadium,Mumbai ,bat,Delhi ,wickets,Amit Mishra
+14,21-04-2021,Kolkata,Chennai,Wankhede Stadium,Kolkata  ,field,Chennai  ,runs,Faf du Plessis
+15,21-04-2021,Punjab,Hyderabad,MA Chidambaram Stadium,Punjab ,bat,Hyderabad,wickets,Jonny Bairstow
+16,22-04-2021,Bangalore,Rajasthan,Wankhede Stadium,Bangalore,field,Bangalore,wickets,Devdutt Padikkal
+17,23-04-2021,Punjab,Mumbai,MA Chidambaram Stadium,Punjab ,field,Punjab ,wickets,KL Rahul
+18,24-04-2021,Rajasthan,Kolkata,Wankhede Stadium,Rajasthan ,field,Rajasthan ,wickets,Chris Morris
+19,25-04-2021,Chennai,Bangalore,Wankhede Stadium,Chennai  ,bat,Chennai  ,runs,Ravindra Jadeja
+20,25-04-2021,Hyderabad,Delhi,MA Chidambaram Stadium,Delhi ,bat,Delhi ,Over,Prithvi Shaw
+21,26-04-2021,Punjab,Kolkata,Narendra Modi Stadium,Kolkata  ,field,Kolkata  ,wickets,Eoin Morgan
+22,27-04-2021,Delhi,Bangalore,Narendra Modi Stadium,Delhi ,field,Bangalore,runs,AB de Villiers
+23,28-04-2021,Chennai,Hyderabad,Arun Jaitley Stadium,Hyderabad,bat,Chennai  ,wickets,Ruturaj Gaikwad
+24,29-04-2021,Mumbai,Rajasthan,Arun Jaitley Stadium,Mumbai ,field,Mumbai ,wickets,Quinton de Kock
+25,29-04-2021,Delhi,Kolkata,Narendra Modi Stadium,Delhi ,field,Delhi ,wickets,Prithvi Shaw
+26,30-04-2021,Punjab,Bangalore,Narendra Modi Stadium,Bangalore,field,Punjab ,runs,Harpreet Brar
+27,01-05-2021,Mumbai,Chennai,Arun Jaitley Stadium,Mumbai ,field,Mumbai ,wickets,Kieron Pollard
+28,02-05-2021,Punjab,Delhi,Narendra Modi Stadium,Delhi ,field,Delhi ,wickets,Mayank Agarwal
+29,02-05-2021,Rajasthan,Hyderabad,Arun Jaitley Stadium,Hyderabad,field,Rajasthan ,runs,Jos Buttler
+30,19-09-2021,Chennai,Mumbai,Dubai International Cricket Stadium,Chennai  ,bat,Chennai  ,runs,Ruturaj Gaikwad
+31,20-09-2021,Kolkata,Bangalore,Sheikh Zayed Stadium,Bangalore,bat,Kolkata  ,wickets,Varun Chakravarthy
+32,21-09-2021,Punjab,Rajasthan,Dubai International Cricket Stadium,Punjab ,field,Rajasthan ,runs,Kartik Tyagi
+33,22-09-2021,Delhi,Hyderabad,Dubai International Cricket Stadium,Hyderabad,bat,Delhi ,wickets,Anrich Nortje
+34,23-09-2021,Mumbai,Kolkata,Sheikh Zayed Stadium,Kolkata  ,field,Kolkata  ,wickets,Sunil Narine
+35,24-09-2021,Bangalore,Chennai,Sharjah Cricket Stadium,Chennai  ,field,Chennai  ,wickets,Dwayne Bravo
+36,25-09-2021,Hyderabad,Punjab,Sharjah Cricket Stadium,Hyderabad,field,Punjab ,runs,Jason Holder
+37,25-09-2021,Delhi,Rajasthan,Sheikh Zayed Stadium,Rajasthan ,field,Delhi ,runs,Shreyas Iyer
+38,26-09-2021,Chennai,Kolkata,Sheikh Zayed Stadium,Kolkata  ,bat,Chennai  ,wickets,Ravindra Jadeja
+39,26-09-2021,Bangalore,Mumbai,Dubai International Cricket Stadium,Mumbai ,field,Bangalore,runs,Glenn Maxwell
+40,27-09-2021,Hyderabad,Rajasthan,Dubai International Cricket Stadium,Rajasthan ,bat,Hyderabad,wickets,Jason Roy
+41,28-09-2021,Kolkata,Delhi,Sharjah Cricket Stadium,Kolkata  ,field,Kolkata  ,wickets,Sunil Narine
+42,28-09-2021,Mumbai,Punjab,Sheikh Zayed Stadium,Mumbai ,field,Mumbai ,wickets,Kieron Pollard
+43,29-09-2021,Bangalore,Rajasthan,Dubai International Cricket Stadium,Bangalore,field,Bangalore,wickets,Yuzvendra Chahal
+44,30-09-2021,Hyderabad,Chennai,Sharjah Cricket Stadium,Chennai  ,field,Chennai  ,wickets,Josh Hazlewood
+45,01-10-2021,Kolkata,Punjab,Dubai International Cricket Stadium,Punjab ,field,Punjab ,wickets,KL Rahul
+46,02-10-2021,Rajasthan,Chennai,Sheikh Zayed Stadium,Rajasthan ,field,Rajasthan ,wickets,Ruturaj Gaikwad
+47,02-10-2021,Mumbai,Delhi,Sharjah Cricket Stadium,Delhi ,field,Delhi ,wickets,Axar Patel
+48,03-10-2021,Bangalore,Punjab,Sharjah Cricket Stadium,Bangalore,bat,Bangalore,runs,Glenn Maxwell
+49,03-10-2021,Kolkata,Hyderabad,Dubai International Cricket Stadium,Hyderabad,bat,Kolkata  ,wickets,Shubman Gill
+50,04-10-2021,Delhi,Chennai,Dubai International Cricket Stadium,Delhi ,field,Delhi ,wickets,Axar Patel
+51,05-10-2021,Rajasthan,Mumbai,Sharjah Cricket Stadium,Mumbai ,field,Mumbai ,wickets,Nathan Coulter-Nile
+52,06-10-2021,Bangalore,Hyderabad,Sheikh Zayed Stadium,Bangalore,field,Hyderabad,runs,Kane Williamson
+53,07-10-2021,Kolkata,Rajasthan,Sharjah Cricket Stadium,Rajasthan ,field,Kolkata  ,runs,Shivam Mavi
+54,07-10-2021,Chennai,Punjab,Dubai International Cricket Stadium,Punjab ,field,Punjab ,wickets,KL Rahul
+55,08-10-2021,Bangalore,Delhi,Dubai International Cricket Stadium,Bangalore,field,Bangalore,wickets,Srikar Bharat
+56,08-10-2021,Hyderabad,Mumbai,Sheikh Zayed Stadium,Mumbai ,bat,Mumbai ,runs,Ishan Kishan
+57,10-10-2021,Delhi,Chennai,Dubai International Cricket Stadium,Chennai  ,field,Chennai  ,wickets,Ruturaj Gaikwad
+58,11-10-2021,Bangalore,Kolkata,Sharjah Cricket Stadium,Bangalore,bat,Kolkata  ,wickets,Sunil Narine
+59,13-10-2021,Delhi,Kolkata,Sharjah Cricket Stadium,Kolkata  ,field,Kolkata  ,wickets,Venkatesh Iyer
+60,15-10-2021,Chennai,Kolkata,Dubai International Cricket Stadium,Kolkata  ,field,Chennai  ,runs,Faf du Plessis
