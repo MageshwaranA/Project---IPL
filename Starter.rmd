@@ -1,36 +1,82 @@
+```{r libraries}
+library(readr)
+library(tidyverse)
+
+```
+
+<br>
+
 ```{r import deliveries}
 
-library(readr)
 Deliveries <- read_csv("dataset/Deliveries.csv")
 
 ```
 
 <br>
 
-#Finding Sanju Samson Total runs in IPL
+#Cleaning data for batsman statistics in IPL
 
-```{r}
-library (tidyverse)
-Sanju <- Deliveries %>% 
-  filter(batsman == "SV Samson")
-Indi_runs <- sum(Sanju$batsman_run)
-Indi_match <- Sanju %>% 
-  group_by(match_no)
-Indi_match <- n_distinct(Indi_match$match_no)
-Not_out <- Sanju %>% 
-  group_by(match_no) %>% 
-  filter(is_wicket == 1) 
-Not_out <- Indi_match - n_distinct(Not_out$match_no)
-Four <- Sanju %>% 
-  filter(batsman_run == 4)
-Four <- count(Four,)
-Six <- Sanju %>% 
-  filter(batsman_run == 6)
-Six <- count(Six,)
-Scores <- Sanju %>% 
-  group_by(match_no) %>% 
-  summarise(sum(batsman_run))
-High_score <- max(Scores$`sum(batsman_run)`)
-Low_score <- min(Scores$`sum(batsman_run)`)
+```{r Batting Stat Cleaning}
+
+Matches_Played <- Deliveries %>%
+  group_by(batsman) %>% 
+  distinct(match_no,batsman) %>% 
+  summarise(Matches_Played = n())
+
+Runs <- Deliveries %>% 
+  group_by(batsman) %>% 
+  summarise(Runs = sum(batsman_run))
+
+Out_matches <- Deliveries %>% 
+  filter(Deliveries$is_wicket == 1) %>% 
+  group_by(batsman) %>% 
+  distinct(match_no,batsman) %>% 
+  summarise(Out = n())
+
+Ball_Faced <- Deliveries %>% 
+  filter(extra_run == 0 | extra_type == "lb") %>% 
+  group_by(batsman) %>% 
+  summarise(Ball_Faced = n())
+
+Score <- Deliveries %>% 
+  group_by(batsman,match_no) %>% 
+  summarise(S = sum(batsman_run))
+
+HS <- Score %>% 
+  group_by(batsman) %>% 
+  summarise(HS = max(S))
+
+
+Four <- Deliveries %>% 
+  group_by(batsman) %>% 
+  filter(batsman_run == 4) %>% 
+  summarise(Four = n())
+
+Six <- Deliveries %>% 
+  group_by(batsman) %>% 
+  filter(batsman_run == 6) %>% 
+  summarise(Six = n())
+
+
+Batting_Stat <- merge(Matches_Played,Runs, all = TRUE)
+
+Batting_Stat <- merge(Batting_Stat, Out_matches, all = TRUE)
+
+Batting_Stat$NO <- Batting_Stat$Matches_Played - Batting_Stat$Out
+
+Batting_Stat <- merge(Batting_Stat, Ball_Faced, all = TRUE)
+
+Batting_Stat <- merge(Batting_Stat, HS, all = TRUE)
+
+Batting_Stat$Average <- Batting_Stat$Runs / Batting_Stat$Out
+
+Batting_Stat$SR <- (Batting_Stat$Runs / Batting_Stat$Ball_Faced) * 100
+
+Batting_Stat <- merge(Batting_Stat, Four, all = TRUE)
+
+Batting_Stat <- merge(Batting_Stat, Six, all = TRUE)
+
+Batting_Stat[is.na(Batting_Stat)] <- 0
+
 ```
 
