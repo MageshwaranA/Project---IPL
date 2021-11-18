@@ -15,6 +15,22 @@ Sanju <- Deliveries %>%
   filter(batsman == "SV Samson")
 Indi_runs <- sum(Sanju$batsman_run)
 Indi_match <- Sanju %>% 
-  group_by(Sanju$match_no)
+  group_by(match_no)
+Indi_match <- n_distinct(Indi_match$match_no)
+Not_out <- Sanju %>% 
+  group_by(match_no) %>% 
+  filter(is_wicket == 1) 
+Not_out <- Indi_match - n_distinct(Not_out$match_no)
+Four <- Sanju %>% 
+  filter(batsman_run == 4)
+Four <- count(Four,)
+Six <- Sanju %>% 
+  filter(batsman_run == 6)
+Six <- count(Six,)
+Scores <- Sanju %>% 
+  group_by(match_no) %>% 
+  summarise(sum(batsman_run))
+High_score <- max(Scores$`sum(batsman_run)`)
+Low_score <- min(Scores$`sum(batsman_run)`)
 ```
 
