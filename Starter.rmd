@@ -80,3 +80,27 @@ Batting_Stat[is.na(Batting_Stat)] <- 0
 
 ```
 
+<br>
+
+#Visual representation of runs scored by each batsman
+
+```{r Circular Bar chart for batsman}
+
+CBC <- ggplot(Batting_Stat, aes(x = as.factor(batsman), y = Runs)) +
+  geom_bar(stat = "identity", fill = alpha("red",0.4)) +
+  ylim(-1,200) +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 0.03),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-2,4), "cm")     # This remove unnecessary margin around plot
+  ) +
+  
+  # This makes the coordinate polar instead of cartesian.
+  coord_polar(start = 0)
+
+CBC
+
+```
+
