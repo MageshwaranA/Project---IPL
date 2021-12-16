@@ -1,0 +1,85 @@
+#Execute the module after "Creating Functions.Rmd"
+
+#Importing libraries
+
+```{r}
+library(ggplot2)
+library(gganimate)
+library(babynames)
+library(hrbrthemes)
+library(viridis)
+library(gifski)
+```
+
+#Visual representation of runs scored by each batsman
+
+#Circular Bar Chart
+
+```{r Circular Bar chart for batsman}
+
+Ccompare <- Bat_chart_Compare("AB de Villiers","Abdul Samad","Abhishek Sharma","RD Gaikwad")
+
+CBC <- ggplot(Ccompare, aes(x = as.factor(batsman), y = Runs)) +
+  geom_bar(stat = "identity", fill = alpha("red",0.4)) +
+  ylim(-1,635) +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 10),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-2,4), "cm")     # This remove unnecessary margin around plot
+  ) +
+  
+  # This makes the coordinate polar instead of cartesian.
+  coord_polar(start = 0)
+
+CBC
+
+```
+
+
+#Animated multi line chart for comparison of runs between batsman
+
+```{r}
+
+a <- Bat_Stat_Compare("AB de Villiers","Abdul Samad","Abhishek Sharma","RD Gaikwad") %>%
+  ggplot( aes(x=match_id, y=Runs, group=batsman, color=batsman)) +
+    geom_line() +
+    geom_point() +
+    scale_color_viridis(discrete = TRUE) +
+    ggtitle("Popularity of American names in the previous 30 years") +
+    theme_ipsum() +
+    ylab("Number of babies born") +
+    transition_reveal(match_id)
+
+animate(a, duration = 10,renderer = gifski_renderer())
+anim_save("output.gif")
+
+```
+
+#Individual performance line graph using animation
+
+#Batsman data are hardcoded inorder to visualize the animations
+
+```{r}
+
+
+f <- Batting_standalone("RD Gaikwad") %>%
+  ggplot( aes(x=match_id, y=Runs, group=batsman, color=batsman)) +
+    geom_line() +
+    geom_point() +
+    scale_color_viridis(discrete = TRUE) +
+    ggtitle("Popularity of American names in the previous 30 years") +
+    theme_ipsum() +
+    ylab("Number of babies born") +
+    transition_reveal(match_id) +
+  ease_aes("linear")
+
+animate(f, duration = 10,renderer = gifski_renderer())
+anim_save("output1.gif")
+
+
+
+
+```
+
