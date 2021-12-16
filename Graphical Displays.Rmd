@@ -47,10 +47,12 @@ a <- Bat_Stat_Compare("AB de Villiers","Abdul Samad","Abhishek Sharma","RD Gaikw
     geom_line() +
     geom_point() +
     scale_color_viridis(discrete = TRUE) +
-    ggtitle("Popularity of American names in the previous 30 years") +
+    ggtitle("Runs comparison ") +
     theme_ipsum() +
-    ylab("Number of babies born") +
-    transition_reveal(match_id)
+    ylab("Runs scored") +
+  xlab("Match Number") +
+    transition_reveal(match_id) +
+  ease_aes("linear")
 
 animate(a, duration = 10,renderer = gifski_renderer())
 anim_save("output.gif")
@@ -69,9 +71,10 @@ f <- Batting_standalone("RD Gaikwad") %>%
     geom_line() +
     geom_point() +
     scale_color_viridis(discrete = TRUE) +
-    ggtitle("Popularity of American names in the previous 30 years") +
+    ggtitle("Runs scored individually") +
     theme_ipsum() +
-    ylab("Number of babies born") +
+    ylab("Runs scored") +
+  xlab("Match Number") +
     transition_reveal(match_id) +
   ease_aes("linear")
 
