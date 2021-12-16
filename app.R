@@ -1,7 +1,171 @@
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(gganimate)
+library(babynames)
+library(hrbrthemes)
+library(viridis)
+library(gifski)
 library(shiny)
 library(shinydashboard)
 library(DT)
 library(shinyWidgets)
+
+Deliveries <- read_csv("dataset/Deliveries.csv")
+
+Matches_Played <- Deliveries %>%
+  group_by(batsman) %>% 
+  distinct(match_no,batsman) %>% 
+  summarise(Matches_Played = n())
+
+Runs <- Deliveries %>% 
+  group_by(batsman) %>% 
+  summarise(Runs = sum(batsman_run))
+
+Out_matches <- Deliveries %>% 
+  filter(Deliveries$is_wicket == 1) %>% 
+  group_by(batsman) %>% 
+  distinct(match_no,batsman) %>% 
+  summarise(Out = n())
+
+Ball_Faced <- Deliveries %>% 
+  filter(extra_run == 0 | extra_type == "lb") %>% 
+  group_by(batsman) %>% 
+  summarise(Ball_Faced = n())
+
+Score <- Deliveries %>% 
+  group_by(batsman,match_no) %>% 
+  summarise(S = sum(batsman_run))
+
+HS <- Score %>% 
+  group_by(batsman) %>% 
+  summarise(HS = max(S))
+
+
+Four <- Deliveries %>% 
+  group_by(batsman) %>% 
+  filter(batsman_run == 4) %>% 
+  summarise(Four = n())
+
+Six <- Deliveries %>% 
+  group_by(batsman) %>% 
+  filter(batsman_run == 6) %>% 
+  summarise(Six = n())
+
+
+Batting_Stat <- merge(Matches_Played,Runs, all = TRUE)
+
+Batting_Stat <- merge(Batting_Stat, Out_matches, all = TRUE)
+
+Batting_Stat$NO <- Batting_Stat$Matches_Played - Batting_Stat$Out
+
+Batting_Stat <- merge(Batting_Stat, Ball_Faced, all = TRUE)
+
+Batting_Stat <- merge(Batting_Stat, HS, all = TRUE)
+
+Batting_Stat$Average <- round((Batting_Stat$Runs / Batting_Stat$Out), digits = 2)
+
+Batting_Stat$SR <- round(((Batting_Stat$Runs / Batting_Stat$Ball_Faced) * 100), digits = 2)
+
+Batting_Stat <- merge(Batting_Stat, Four, all = TRUE)
+
+Batting_Stat <- merge(Batting_Stat, Six, all = TRUE)
+
+Batting_Stat[is.na(Batting_Stat)] <- 0
+
+Matches_Played_bowler <- Deliveries %>%
+  group_by(bowler) %>% 
+  distinct(match_no,bowler) %>% 
+  summarise(Match = n())
+
+Runs_bowler <- Deliveries %>% 
+  group_by(bowler) %>% 
+  filter(extra_type != "lb" | extra_run == 0) %>% 
+  summarise(Runs = sum(batsman_run,extra_run))
+
+Wickets <- Deliveries %>% 
+  filter(Deliveries$is_wicket == 1 & dismissal_type != "runout") %>% 
+  group_by(bowler)%>%
+  summarise(Wickets = n())
+
+Ball_bowled <- Deliveries %>% 
+  filter(extra_run == 0 | extra_type != "lb" | extra_run == 1) %>% 
+  group_by(bowler) %>% 
+  summarise(Balls = n())
+
+Overs_Bowled <- Deliveries %>% 
+  filter(extra_run == 0) %>% 
+  group_by(bowler) %>% 
+  summarise(Overs = n() %/% 6, Rem = n() %% 6) %>% 
+  mutate(Over = as.numeric(str_c(Overs,".",Rem))) %>% 
+  select(-c(Overs, Rem))
+
+Most_runs_per_over <- Deliveries %>% 
+  filter(extra_type != "lb" | extra_run == 0 | extra_run == 1) %>% 
+  group_by(bowler,match_no,over) %>% 
+  summarise(D = sum(batsman_run, extra_run)) %>% 
+  summarise(fi = max(D)) %>% 
+  summarise(Over_Runs = max(fi))
+
+Best <- Deliveries %>% 
+  group_by(bowler,match_no) %>% 
+  filter(is_wicket == 1 & dismissal_type != "runout") %>% 
+  summarise(Wickets = sum(is_wicket)) 
+
+
+Most_Wickets_per_match <- Best %>% 
+  group_by(bowler) %>% 
+  summarise(Best = max(Wickets))
+
+
+
+Bowling_Stat <- merge(Matches_Played_bowler,Runs_bowler, all = TRUE)
+
+Bowling_Stat <- merge(Bowling_Stat, Wickets, all = TRUE)
+
+Bowling_Stat <- merge(Bowling_Stat, Ball_bowled, all = TRUE)
+
+Bowling_Stat <- merge(Bowling_Stat, Overs_Bowled, all = TRUE)
+
+Bowling_Stat <- merge(Bowling_Stat, Most_runs_per_over, all = TRUE)
+
+Bowling_Stat <- merge(Bowling_Stat, Most_Wickets_per_match, all = TRUE)
+
+Bowling_Stat$Average <- round((Bowling_Stat$Runs / Bowling_Stat$Wickets), digits = 2)
+
+Bowling_Stat$SR <- round((Bowling_Stat$Balls / Bowling_Stat$Wickets), digits = 2)
+
+Bowling_Stat$Economy <- round((Bowling_Stat$Runs / (Bowling_Stat$Over)), digits = 2)
+
+Bowling_Stat[is.na(Bowling_Stat)] <- 0
+
+don <-  Deliveries %>% 
+  group_by(batsman,match_no) %>% 
+  summarise(Runs = sum(batsman_run))
+
+Bat_chart_Compare <- function(batsman1, batsman2, batsman3, batsman4){
+  filter(don, batsman == batsman1 | batsman == batsman2 | batsman == batsman3 | batsman == batsman4)
+}
+
+Bat_Stat_Compare <- function(batsman1, batsman2, batsman3, batsman4){
+  a <- filter(don, batsman == batsman1)
+  a$match_id <- seq.int(nrow(a))
+  b <- filter(don, batsman == batsman2)
+  b$match_id <- seq.int(nrow(b))
+  c <- filter(don, batsman == batsman3)
+  c$match_id <- seq.int(nrow(c))
+  d <- filter(don, batsman == batsman4)
+  d$match_id <- seq.int(nrow(d))
+  a <- rbind(a, b)
+  a <- rbind(a, c)
+  a <- rbind(a, d)
+}
+
+Batting_standalone <- function(batsman1){
+  a <- filter(don, batsman == batsman1)
+  a$match_id <- seq.int(nrow(a))
+  a
+}
 
 unique_values <- sort(unique(Batting_Stat$batsman))
 
