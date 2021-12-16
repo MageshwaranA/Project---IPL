@@ -244,24 +244,28 @@ ui <- dashboardPage(
                 )
               ),
               fluidRow(
-                box(
+                box(status = "warning",
+                    solidHeader = TRUE,
                   selectInput("bat1", "Batsman 1:", choices = unique_values,
                               selected = "AB de Villiers" 
                   )
                 ),
-                box(
+                box(status = "warning",
+                    solidHeader = TRUE,
                   selectInput("bat2", "Batsman 2:", choices = unique_values,
                               selected = "Virat Kohli"
                   )
                 )
               ),
               fluidRow(
-                box(
+                box(status = "warning",
+                    solidHeader = TRUE,
                   selectInput("bat3", "Batsman 3:", choices = unique_values,
                               selected = "SV Samson"
                   )
                 ),
-                box(
+                box(status = "warning",
+                    solidHeader = TRUE,
                   selectInput("bat4", "Batsman 4:", choices = unique_values,
                               selected = "KL Rahul"
                   )
